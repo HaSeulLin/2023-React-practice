@@ -4,6 +4,7 @@ import CountComp from './components/CountComp';
 import CountPropsComp from './components/CountPropsComp';
 import LoginComp from './components/LoginComp';
 import LoginComp2 from './components/LoginComp2';
+import MemoComp from './components/MemoComp';
 
 function App() {
   return (
@@ -31,6 +32,17 @@ function App() {
        */}
       <LoginComp />
       <LoginComp2 />
+
+      {/** 기록장 작성
+       * memoList : [
+       *      {id:1, memo:"기록", time:new Date()},
+       *      {id:2, memo:"연습", time:new Date()}
+       *   ]
+       * state를 이용하여, memoList의 내용을 map으로
+       * li태그에 출력하세요
+       * input 태그로 입력, button 클릭 추가, li 클릭 삭제
+       */}
+      <MemoComp />
     </div>
   );
 }

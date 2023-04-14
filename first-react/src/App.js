@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MyComponent from './components/MyComponent';
 // 동일한 파일에서 두 개 이상 내보냈을 때,
@@ -12,6 +11,19 @@ import EventComp from './components/EventComp';
 
 import RefDomEvent from './components/RefDomEvent';
 import MapComp from './components/MapComp';
+
+import LifeCycle from './components/LifeCycle';
+
+import ArrowComponent from './components/ArrowComponent';
+import ArrowTest from './components/ArrowTest';
+import ArrowState from './components/ArrowState';
+
+import Arrowtest2 from './practice/Arrowtest2';
+import Arrowstate2 from './practice/Arrowstate2'
+import ReactPractice from './practice/ReactPractice'
+
+import EffectHook from './components/EffectHook';
+import EffectHook2 from './components/EffectHook2';
 
 /* 리엑트에서 오류가 뜨는 이유
     1. 존재하지 않는 컴포넌트 출력
@@ -57,6 +69,34 @@ function App() {
 
       {/** 컴포넌트의 반복 */}
       <MapComp />
+
+      {/** 라이프 사이클 */}
+      <LifeCycle />
+
+      {/** 함수형 컴포넌트 */}
+      <ArrowComponent text="문자열을 전달" />
+      <ArrowComponent>children으로 전달</ArrowComponent>
+
+      {/** 함수형 컴포넌트 실습
+       * 아래 컴포넌트를 함수형으로 만들고 출력하기
+       * name ="green" : h3 태그 출력
+       * check={true} : check 값이 true 일 때 name 출력
+       * children="환영합니다" : p 태그로 출력
+       */}
+      <ArrowTest name="green" check={true}>환영합니다</ArrowTest>
+
+      {/** 함수형 컴포넌트의 state 사용 */}
+      <ArrowState></ArrowState>
+
+      {/** 화살표함수arrow형 복습 */}
+      <Arrowtest2 name="green" check={true}>환영</Arrowtest2>
+      <Arrowstate2></Arrowstate2>
+      <ReactPractice num={20}></ReactPractice>
+
+      {/** 함수형 컴포넌트의 effect Hook */}
+      <EffectHook />
+      {/** 함수형 컴포넌트의 useEffect 응용 */}
+      <EffectHook2 />
     </div>
   );
 }

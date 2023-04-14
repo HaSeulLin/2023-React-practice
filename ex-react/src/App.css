@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+/* MemoComp CSS 스타일 */
+@font-face {
+  font-family: 'EF_watermelonSalad';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_watermelonSalad.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.memocomp {
+  font-family: 'EF_watermelonSalad';
+}
+
+.memocomp ul {
+  width: 500px;
+  margin: auto;
+}
+
+.memocomp li {
+  list-style: none;
+  text-align: left;
+}
+.memocomp div input {
+  border-radius: 20px;
+  padding: 8px 10px;
+  font-family: 'EF_watermelonSalad';
+}
+
+.memocomp div button {
+  font-family: 'EF_watermelonSalad';
+  margin-left: 5px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 8px 10px;
+  background-color: #282c34;
+  color: whitesmoke;
+}
+
+.memocomp div ul li:first-child {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.memocomp div ul li {
+  margin: 10px;
+}

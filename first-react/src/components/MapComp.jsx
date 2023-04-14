@@ -15,8 +15,10 @@ export class MapComp extends Component {
             ],
             inputText : "" // onChange이용해서 input의 value값 가져옴
         };
+        // 수정될 때마다 값이 화면에 표현되지 않고,
+        // 값을 저장하고 싶을 때
+        this.id = 5;
     }
-        
     
     // 버튼을 클릭했을 때 state.students에 {id:4, name:""} 추가
     addStudent = () => {
@@ -38,14 +40,29 @@ export class MapComp extends Component {
     // 1씩 증가 >> 배열의 길이값이 1씩 증가
     const newStudents = this.state.students.concat(
         {id : this.state.students.length+1,
-        name : this.state.inputText})
+        name : this.state.inputText}
+        )
         this.setState({students : newStudents});
+        // 속성값에 직접 접근해서 1증가
+        this.id++;
         
     // input 태그에 value={} state값으로 연결하면
     // setState를 통해서 값을 수정할 수 있다
     // 접근하는 state의 이름이 다르면 따로 적어도 괜찮다
     // this.setState({students : newStudents, inputText : ""})
     this.setState({inputText : ""})
+    }
+
+    // 전달해준 student 값을 사용하기 위해서 매개변수로 받아와야 함 : (student)
+    deleteStudent = (student) => {
+    // 1. 배열에서 값을 제거하는 방법 
+        // 1) po, splice .. > 원래값에 제거 >> 사용 x
+        // 2) 값을 제거하고 새로운 배열 생성 : filter
+        // filter 
+        // : (value)=>return 참 일때 value값을 return 배열에 추가
+        const newStudents = this.state.students.filter(
+            (s)=>s.id !== student.id)
+        this.setState({students : newStudents});
     }
 
     render() {
@@ -101,13 +118,9 @@ export class MapComp extends Component {
                 <tr key={student.id}>
                     <td>{student.id}</td>
                     <td
-                        onClick={()=>{
                         // 이름을 클릭하면 해당 객체를 삭제
-                        // 1. 배열에서 값을 제거하는 방법 
-                            // 1) po, splice .. > 원래값에 제거 >> 사용 x
-                            // 2) 값을 제거하고 새로운 배열 생성 : filter
-                            // filter : ()=>
-                        }}
+                        // student의 값을 전달하기 위해서 화살표 함수로 감싸기
+                        onClick={()=>{this.deleteStudent(student)}}
                     >{student.name}</td>
                 </tr>)}
                 <tr>

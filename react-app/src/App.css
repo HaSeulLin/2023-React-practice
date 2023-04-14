@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+}
+
+body {
+  padding: 5px;
+}
+
+.App div {
+  width : 100%;
+  margin-top: 30px;
+}
+
+.App div input[type="text"] {
+  width : 200px;
+  padding: 5px 10px;
+  border: 2px solid black;
+}
+
+.App table {
+  border: 1px solid black;
+  width: 200px;
+  margin: auto;
+  padding : 10px 15px;
+  border-collapse: collapse;
+}
+
+.App table tr:first-child {
+  border-bottom: 1px black solid;
+  font-size: 1.1rem;
+}
+
+.App table th, .App table td {
+  padding: 8px;
+}

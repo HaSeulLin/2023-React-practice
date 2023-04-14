@@ -1,0 +1,19 @@
+body {
+    margin-bottom: 50px;
+}
+
+li {
+    list-style: none;
+    padding: 7px;
+}
+.on {
+    color: blue;
+}
+
+ul {
+    border: black solid 1px;
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+}
