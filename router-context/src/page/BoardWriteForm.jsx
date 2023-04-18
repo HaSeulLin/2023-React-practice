@@ -30,7 +30,8 @@ export default function BoardWriteForm() {
       title: title,
       content: content,
       date: "2023-04-18",
-      writer: "익명",
+      // DataContext에 들어가 있는 user의 writer값
+      writer: state.user.writer,
     };
     // 1-1. id 값을 1씩 증가
     action.setId(state.id + 1);

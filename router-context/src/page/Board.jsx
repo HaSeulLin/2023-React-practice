@@ -63,13 +63,28 @@ export default function Board() {
                 </>
             )
         }
-        <button
-            onClick={deleteBoard}
-        >게시글 삭제</button>
-        <button
-            // navigate의 state를 이용하여 boardData 객체를 전달
-            onClick={()=>{navigate('/board-modify-form', {state: boardData})}}
-        >게시글 수정하기</button>
+        { /**
+         * writer 값이 같을 때만 아래 버튼들 보이기 - 삼항 연산자 
+         * boardData의 값이 있을 때 비교!     
+         * 먼저는 boardData가 있는지 확인한 후에 출력
+         * >> 연달아서 확인하기 위해 && 연산자 사용
+         * 1) boardData가 있는지 확인 (있으면 T/없으면 F)
+         * 2) writer 비교
+        */}
+        {
+            boardData &&
+                (state.user.writer === boardData.writer &&
+                    <div>
+                        <button
+                            onClick={deleteBoard}
+                        >게시글 삭제</button>
+                        <button
+                            // navigate의 state를 이용하여 boardData 객체를 전달
+                            onClick={()=>{navigate('/board-modify-form', {state: boardData})}}
+                        >게시글 수정하기</button>
+                    </div>                    
+                )
+        }
     </div>
   )
 }

@@ -3,6 +3,9 @@ import React, {useState} from 'react'
 const  DataContext= React.createContext('');
 
 // 데이터값을 가진 Provider 컴포넌트 작성
+// DataContext에 들어갈 value 값의 특징
+// : 2개 이상의 페이지 컴포넌트에서 사용할 때 작성
+// : 페이지 컴포넌트 - path로 연결된 컴포넌트
 const DataProvider = ({children}) => {
     // 데이터를 저장 및 수정하기 위해 useState 사용
     const [boardlist, setBoardlist] = useState(
@@ -34,10 +37,15 @@ const DataProvider = ({children}) => {
     // id 값을 전달하기 위해 useState()로 작성
     const [id, setId] = useState(4);
 
-    // value에 담을 데이터 정리
+    // user 값을 사용하기 위해 useState() 작성
+    const [user, setUser] = useState (
+        {writer : "익명", login : false}
+    )
+
+    // value에 담을 데이터 정리 >> 게시글, id, 유저 
     const value = {
-        state : {boardlist, id},
-        action : {setBoardlist, setId}
+        state : {boardlist, id, user},
+        action : {setBoardlist, setId, setUser}
     };
 
     return <DataContext.Provider value={value}>

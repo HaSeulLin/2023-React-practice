@@ -9,6 +9,7 @@ import Layout from './page/Layout';
 import { DataProvider } from './context/DataContext';
 import BoardWriteForm from './page/BoardWriteForm';
 import BoardModifyForm from './page/BoardModifyForm';
+import LoginForm from './page/LoginForm';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path='/boardlist/:id' element={<Board />}/>
             <Route path='/boardwriteform' element={<BoardWriteForm />} />
             <Route path='/board-modify-form' element={<BoardModifyForm />} />
+
+            <Route path='/login-form' element={<LoginForm />} />
           </Route>
         </Routes>
       </DataProvider>
