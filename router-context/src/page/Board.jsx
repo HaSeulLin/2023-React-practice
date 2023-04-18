@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import data from '../data/dummy.json'
+// import data from '../data/dummy.json'
+import DataContext from '../context/DataContext';
 
 // board에 data의 내용이 필요함
 export default function Board() {
     const navigate = useNavigate();
 
     const {id} = useParams();
+    
+    // data 출력 변수
+    // json 내용 대신에 DataContext에 있는 boardlist 들고 와서 화면에 출력하기
+    //    const value = useContext(DataContext);
+    // Context의 값을 가져옴
+    // 삭제를 위해 action 속성도 들고오기
+    const {state, action} = useContext(DataContext);
+    const {boardlist} = state;
+
     // 배열의 함수인 find를 이용하여
     // 함수의 조건이 참인 하나의 값을 가져온다
     // find로 가져온 값은 배열 안에 있는 하나의 값
     // find로 값을 찾지 못할 경우 undefined를 출력
     // undefined의 값 속성을 찾으려고 하면 >> 오류!
-    const boardData = data.find((d)=>(d.id==id));
+    const boardData = boardlist.find((d)=>(d.id==id));
 
     // useEffect를 사용해서 boardData 값이 undefined면
     // 오류 페이지 컴포넌트로 이동 혹은 목록으로 이동
@@ -23,7 +33,22 @@ export default function Board() {
             navigate('/boardlist');
         }
     }, [])
-    
+
+
+    // 게시물 삭제 메소드 작성
+    // id값 비교해서 동일하면 삭제
+    const deleteBoard = () => {
+    // 1. 현재 id를 들고온다
+    // 2. id와 동일한 객체를 제외한 새로운 배열을 만든다 (filter)
+    // 일치 연산자의 경우 자료형이 같아야 한다 (숫자형으로 바꿔줌)
+    const newBoardlist = boardlist.filter((board)=>(board.id !== Number(id)))
+    // 3. 새로운 배열을 set메소드를 통해 넣어준다
+    action.setBoardlist(newBoardlist);
+
+    // 삭제 이후에 boardlist로 이동 > navigate
+    navigate('/boardlist');
+    }
+
   return (
     <div>
         {   // 화면이 먼저 화면에 렌더되고, useEffect 실행
@@ -38,6 +63,13 @@ export default function Board() {
                 </>
             )
         }
+        <button
+            onClick={deleteBoard}
+        >게시글 삭제</button>
+        <button
+            // navigate의 state를 이용하여 boardData 객체를 전달
+            onClick={()=>{navigate('/board-modify-form', {state: boardData})}}
+        >게시글 수정하기</button>
     </div>
   )
 }
