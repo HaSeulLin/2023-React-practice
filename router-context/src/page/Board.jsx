@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 // import data from '../data/dummy.json'
 import DataContext from '../context/DataContext';
+import CommentComp from '../components/CommentComp';
 
 // board에 data의 내용이 필요함
 export default function Board() {
@@ -24,6 +25,11 @@ export default function Board() {
     // find로 값을 찾지 못할 경우 undefined를 출력
     // undefined의 값 속성을 찾으려고 하면 >> 오류!
     const boardData = boardlist.find((d)=>(d.id==id));
+
+    // state의 commentlist에서 boardId와 param의 id 값이 같은
+    // 새로운 배열을 작성 (filter)
+    const boardCommentList = state.commentlist.filter(
+        (comment)=>(comment.boardId == id));
 
     // useEffect를 사용해서 boardData 값이 undefined면
     // 오류 페이지 컴포넌트로 이동 혹은 목록으로 이동
@@ -84,6 +90,18 @@ export default function Board() {
                         >게시글 수정하기</button>
                     </div>                    
                 )
+        }
+        <hr />
+        { /** 코멘트 */ }
+        {
+            // 값을 넘길 형태가 객체로 주어져 있으면 객체로 넘길 수 있다
+            // state의 commentlist를 그대로 쓰게 되면 리스트 전체가 나옴
+            // >> 동일한 boardId를 가진 commentlist를 만들어야 함
+            boardCommentList.map((comment)=>(
+                <CommentComp
+                    comment={comment}
+                />
+            ))
         }
     </div>
   )

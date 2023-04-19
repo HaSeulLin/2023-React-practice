@@ -41,3 +41,15 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+
+body {
+  text-align: left;
+  max-width: 800px;
+  padding: 10px;
+  margin: auto;
+}
+
+li {
+  list-style: none;
+}
