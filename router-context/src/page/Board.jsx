@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // import data from '../data/dummy.json'
@@ -18,6 +18,9 @@ export default function Board() {
     // 삭제를 위해 action 속성도 들고오기
     const {state, action} = useContext(DataContext);
     const {boardlist} = state;
+
+    // 코멘트의 작성할 글을 저장하기 위한 공간
+    const [text, setText] = useState("");
 
     // 배열의 함수인 find를 이용하여
     // 함수의 조건이 참인 하나의 값을 가져온다
@@ -53,6 +56,40 @@ export default function Board() {
 
     // 삭제 이후에 boardlist로 이동 > navigate
     navigate('/boardlist');
+    }
+    
+    // 코멘트 추가 메소드
+    const addComment = () => {
+        // 1. 추가할 코멘트 객체 생성
+        const newComment = {
+            cId : state.cId,
+            boardId : boardData.id,
+            text : text,
+            date : "2023-04-19",
+            writer : state.user.writer
+        }
+        // 1-1. cId 값 1씩 증가
+        action.cIdCount();
+
+        // 2. 코멘트가 추가된 새로운 배열
+        const newCommentlist = state.commentlist.concat(newComment);
+        // 3. 새로운 배열을 set메소드를 통해 값을 넣어줌
+        action.setCommentlist(newCommentlist);
+    }
+
+    // 코멘트 삭제 메소드
+    const deleteComment = (cId) => {
+        // 1. 삭제/수정을 할 때는 값의 id(유일한값)을 통해 확인
+        // boardCommentlist의 각 객체에 id가 있음
+        // >> map으로 객체를 하나씩 출력할 때 id 값을 가져옴
+
+        // 2. filter로 id 값을 제외한 새로운 배열 생성
+        // state.commentlist를 통해서 새로운 배열 생성!
+        const newCommentlist = state.commentlist.filter(
+            (comment)=>(comment.cId !== cId));
+
+        // 3. 새로운 배열 set메소드로 출력
+        action.setCommentlist(newCommentlist)
     }
 
   return (
@@ -92,14 +129,23 @@ export default function Board() {
                 )
         }
         <hr />
-        { /** 코멘트 */ }
+        {/** 코멘트를 작성할 공간 */}
+        <input type="text"
+            onChange={(e)=>(setText(e.target.value))}
+        />
+        <button
+            onClick={addComment}
+        >댓글 작성</button>
+        <hr />
         {
             // 값을 넘길 형태가 객체로 주어져 있으면 객체로 넘길 수 있다
             // state의 commentlist를 그대로 쓰게 되면 리스트 전체가 나옴
             // >> 동일한 boardId를 가진 commentlist를 만들어야 함
             boardCommentList.map((comment)=>(
                 <CommentComp
+                    key={comment.cId}
                     comment={comment}
+                    deleteComment={deleteComment}
                 />
             ))
         }

@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 
 const  DataContext= React.createContext('');
 
+// 컴포넌트 밖에서 생성한 값의 경우, 자동으로 값이 바뀌지 않기에 안에서 메소드를 작성
+let cId = 3;
+
 // 데이터값을 가진 Provider 컴포넌트 작성
 // DataContext에 들어갈 value 값의 특징
 // : 2개 이상의 페이지 컴포넌트에서 사용할 때 작성
@@ -51,22 +54,27 @@ const DataProvider = ({children}) => {
                 boardId : 1,
                 text : "첫번째 게시글의 코멘트입니다",
                 date : "2023-04-19",
-                wirter : "green"
+                writer : "green"
             },
             {
                 cId : 2,
                 boardId : 3,
                 text : "세번째 게시글의 코멘트입니다",
                 date : "2023-04-19",
-                wirter : "green"
+                writer : "green"
             }
         ]
     )
 
+    // cId를 사용하기 위한 메소드 (호출하면 1씩 증가)
+    const cIdCount = () => {
+        cId++;
+    }
+
     // value에 담을 데이터 정리 >> 게시글, id, 유저 
     const value = {
-        state : {boardlist, id, user, commentlist},
-        action : {setBoardlist, setId, setUser, setCommentlist}
+        state : {boardlist, id, user, commentlist, cId},
+        action : {setBoardlist, setId, setUser, setCommentlist, cIdCount}
     };
 
     return <DataContext.Provider value={value}>
