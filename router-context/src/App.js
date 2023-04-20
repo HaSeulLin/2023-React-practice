@@ -11,6 +11,9 @@ import BoardWriteForm from './page/BoardWriteForm';
 import BoardModifyForm from './page/BoardModifyForm';
 import LoginForm from './page/LoginForm';
 
+import ImagePage from './page/ImagePage';
+
+
 function App() {
   return (
     <div className="App">
@@ -24,6 +27,8 @@ function App() {
             <Route path='/board-modify-form' element={<BoardModifyForm />} />
 
             <Route path='/login-form' element={<LoginForm />} />
+
+            <Route path='/image' element={<ImagePage />}/>
           </Route>
         </Routes>
       </DataProvider>

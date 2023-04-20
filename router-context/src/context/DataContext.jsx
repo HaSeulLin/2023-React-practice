@@ -66,6 +66,18 @@ const DataProvider = ({children}) => {
         ]
     )
 
+    // 좋아요 배열을 사용하기 위한 useState()
+    // 좋아요 표시를 목록에서 먼저 표시.
+    // 게시글 안에서 표시(나중에 생각)
+    const [likelist, setLikelist] = useState(
+        [
+            {
+                boardId : 1,
+                title : "첫번째 게시물입니다"
+            }
+        ]
+    )
+
     // cId를 사용하기 위한 메소드 (호출하면 1씩 증가)
     const cIdCount = () => {
         cId++;
@@ -73,8 +85,8 @@ const DataProvider = ({children}) => {
 
     // value에 담을 데이터 정리 >> 게시글, id, 유저 
     const value = {
-        state : {boardlist, id, user, commentlist, cId},
-        action : {setBoardlist, setId, setUser, setCommentlist, cIdCount}
+        state : {boardlist, id, user, commentlist, cId, likelist},
+        action : {setBoardlist, setId, setUser, setCommentlist, cIdCount, setLikelist}
     };
 
     return <DataContext.Provider value={value}>

@@ -9,6 +9,7 @@ export default function NavHeader() {
         <Link to='/'>HOME</Link>
         <Link to='/boardlist'>BOARD</Link>
         <Link to='/boardwriteform'>WRITE</Link>
+        <Link to='/image'>IMAGE</Link>
         <Link to='/login-form'>LOGIN</Link>
         {/**
          * state의 user의 login이 false일 때 : Link

@@ -11,7 +11,7 @@ export default function Home() {
             Home
             {
                 dataList.map((data)=>(
-                    <li>{data.id}</li>
+                    <li key={data.id}>{data.id}</li>
                 ))
             }
         </div>
