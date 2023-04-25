@@ -40,9 +40,19 @@ const DataProvider = ({children}) => {
     // id 값을 전달하기 위해 useState()로 작성
     const [id, setId] = useState(4);
 
+    // cId를 사용하기 위한 메소드 (호출하면 1씩 증가)
+    const cIdCount = () => {
+        cId++;
+    }
+
     // user 값을 사용하기 위해 useState() 작성
+    // user Profile img
     const [user, setUser] = useState (
-        {writer : "익명", login : false}
+        {
+            writer : "MerryJell",
+            login : true,
+            profile : require('../img/profile.jpg')
+        }
     )
 
     // commentlist 값 저장
@@ -78,10 +88,6 @@ const DataProvider = ({children}) => {
         ]
     )
 
-    // cId를 사용하기 위한 메소드 (호출하면 1씩 증가)
-    const cIdCount = () => {
-        cId++;
-    }
 
     // value에 담을 데이터 정리 >> 게시글, id, 유저 
     const value = {

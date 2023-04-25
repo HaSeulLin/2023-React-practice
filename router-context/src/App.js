@@ -12,6 +12,7 @@ import BoardModifyForm from './page/BoardModifyForm';
 import LoginForm from './page/LoginForm';
 
 import ImagePage from './page/ImagePage';
+import MyPage from './page/MyPage';
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
 
             <Route path='/login-form' element={<LoginForm />} />
 
-            <Route path='/image' element={<ImagePage />}/>
+            <Route path='/image' element={<ImagePage />} />
+
+            <Route path='/mypage' element={<MyPage />} />
           </Route>
         </Routes>
       </DataProvider>

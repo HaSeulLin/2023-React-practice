@@ -8,7 +8,7 @@ export default function BoardWriteForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // Context에서 작성한 value의 state의 oardlist의 값을 추가
+  // Context에서 작성한 value의 state의 boardlist의 값을 추가
   // value의 action의 setBoradlist에 접근해서 작성한 새로운 값 추가
   // >> todolist에서 값을 추가할 때 생각,
   // 이전의 배열을 들고 와서 뒤에 concat()을 통해 새로운 배열을 만들어 추가

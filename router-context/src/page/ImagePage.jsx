@@ -7,8 +7,8 @@ export default function ImagePage() {
     <div>
         <h3>ImagePage</h3>
         <div>
-            <img src="/logo192.png" alt="" />
-            <img src="/img/logo512.png" alt="" />
+            <img src={process.env.PUBLIC_URL+"/logo192.png"} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/img/logo192.png`} alt="" />
             <p>1. public에서 가져오는 방법</p>
             <p>build 할 때 그 내용을 함께 가져감</p>
         </div>
@@ -24,7 +24,7 @@ export default function ImagePage() {
             <div style={{
                 width:"192px", height:"192px",
 //                backgroundImage:`url("/logo192.png")`,
-                backgroundImage:`url(${logo})`
+                backgroundImage:`url("${process.env.PUBLIC_URL}/logo192.png")`
             }}>
             </div>
             <p>style 백그라운드 이미지 확인 : public/src에서 들고온 값</p>

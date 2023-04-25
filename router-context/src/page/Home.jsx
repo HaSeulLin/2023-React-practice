@@ -8,10 +8,10 @@ export default function Home() {
 
     return (
         <div>
-            Home
+            <h3>Home</h3>
             {
                 dataList.map((data)=>(
-                    <li key={data.id}>{data.id}</li>
+                    <li key={data.id}>{data.id} section</li>
                 ))
             }
         </div>
